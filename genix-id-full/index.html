@@ -1,0 +1,390 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl" id="htmlPage">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Genix ID — استوديو تقني عربي للذكاء الاصطناعي، الويب، الهوية البصرية والإنتاج المرئي.">
+  <title>Genix ID | تقنيات المستقبل</title>
+  
+  <link rel="icon" href="assets/brand/logo.jpg" type="image/jpeg">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="preload" href="https://fonts.googleapis.com/css2?family=Noto+Sans+Arabic:wght@400;500;600;700;800&family=Inter:wght@400;500;600;700&display=swap" as="style">
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Arabic:wght@400;500;600;700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+  
+  <style>
+    /* تنسيقات إضافية مخصصة للأزرار الجديدة ومبدل اللغات */
+    .topbar__end { display: flex; align-items: center; gap: 10px; }
+    .lang-switcher { position: relative; display: inline-block; }
+    .lang-switcher select { background: rgba(255,255,255,0.1); color: #fff; border: 1px solid rgba(255,255,255,0.2); padding: 5px 10px; border-radius: 4px; cursor: pointer; font-family: inherit; font-size: 14px; }
+    .lang-switcher select option { background: #111; color: #fff; }
+    .btn--instagram { background: linear-gradient(45deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%); color: #fff !important; }
+    .contact__actions { display: flex; gap: 12px; flex-wrap: wrap; margin-top: 15px; }
+    .fab-container { position: fixed; bottom: 20px; left: 20px; display: flex; flex-direction: column; gap: 10px; z-index: 999; }
+    .fab-btn { width: 50px; height: 50px; border-radius: 50%; display: flex; align-items: center; justify-content: center; color: white; box-shadow: 0 4px 10px rgba(0,0,0,0.3); transition: transform 0.3s; }
+    .fab-btn:hover { transform: scale(1.1); }
+    .fab-btn--wa { background-color: #25D366; }
+    .fab-btn--ig { background: linear-gradient(45deg, #f09433, #e6683c, #dc2743, #cc2366, #bc1888); }
+    /* دعم اللغات اللاتينية عند التغيير */
+    html[dir="ltr"] { text-align: left; }
+    html[dir="ltr"] .topbar__shell { flex-direction: row-reverse; }
+    
+    /* Performans İyileştirmesi: Videolar yüklenirken arka planın boş kalmaması için */
+    .hero__media { background: #0b0b0b; }
+    video { object-fit: cover; width: 100%; height: 100%; }
+  </style>
+</head>
+<body>
+  <div class="circuit-bg" aria-hidden="true"></div>
+  <div class="grain" aria-hidden="true"></div>
+  <div class="scroll-progress" id="scrollProgress" aria-hidden="true"></div>
+
+  <header class="topbar" id="header">
+    <div class="topbar__shell">
+      <a href="#home" class="topbar__brand">
+        <img src="assets/brand/logo.jpg" alt="Genix ID" class="topbar__logo-img" width="48" height="48">
+      </a>
+      <nav class="topbar__nav" id="navMenu" aria-label="القائمة">
+        <a href="#vision" data-i18n="nav_vision">الرؤية</a>
+        <a href="#solutions" data-i18n="nav_services">الخدمات</a>
+        <a href="#showreel" data-i18n="nav_media">المرئي</a>
+        <a href="#portfolio" data-i18n="nav_portfolio">الأعمال</a>
+        <a href="#contact" data-i18n="nav_contact">تواصل</a>
+      </nav>
+      <div class="topbar__end">
+        <div class="lang-switcher">
+          <select id="langSelect" aria-label="تغيير اللغة">
+            <option value="ar" selected>العربية (AR)</option>
+            <option value="en">English (EN)</option>
+            <option value="tr">Türkçe (TR)</option>
+          </select>
+        </div>
+        <a href="https://instagram.com/genix.identity" class="btn btn--instagram btn--sm" target="_blank" rel="noopener">إنستغرام</a>
+        <a href="https://wa.me/905527223847" class="btn btn--glow btn--sm" target="_blank" rel="noopener" data-i18n="btn_start">ابدأ مشروعك</a>
+        <button type="button" class="burger" id="navToggle" aria-expanded="false" aria-label="القائمة">
+          <span></span><span></span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <main id="main">
+    <section class="hero" id="home">
+      <div class="hero__media">
+        <video autoplay muted loop playsinline poster="assets/images/hero-banner.jpeg" id="lazyHeroVideo">
+          <source data-src="assets/videos/showreel-1.mp4" type="video/mp4">
+        </video>
+        <div class="hero__shade"></div>
+      </div>
+      <div class="container hero__body">
+        <img src="assets/brand/logo.jpg" alt="" class="hero__brand-logo" width="140" height="140">
+        <div class="chip" data-i18n="hero_chip">Genix ID · هوية رقمية رسمية</div>
+        <h1 class="hero__headline">
+          <span data-i18n="hero_title_1">نصنع المستقبل</span>
+          <span class="gradient-text" id="heroRotate" data-i18n="hero_title_2">بالذكاء الاصطناعي</span>
+        </h1>
+        <p class="hero__sub" data-i18n="hero_desc">استوديو رقمي متكامل — من الهوية والويب إلى الفيديو والذكاء الاصطناعي. تجربة فاخرة، تنفيذ سريع، نتائج قابلة للقياس.</p>
+        <div class="hero__actions">
+          <a href="#portfolio" class="btn btn--glow" data-i18n="btn_works">استكشف الأعمال</a>
+          <a href="#contact" class="btn btn--glass" data-i18n="btn_quote">طلب عرض سعر</a>
+        </div>
+        <div class="hero__metrics">
+          <div><b dir="ltr">+120</b><span data-i18n="metric_projects">مشروع</span></div>
+          <div><b>6</b><span data-i18n="metric_services">خدمات</span></div>
+          <div><b dir="ltr">24/7</b><span data-i18n="metric_support">دعم</span></div>
+        </div>
+      </div>
+      <a href="#vision" class="hero__scroll" aria-label="انتقل للأسفل">
+        <span></span>
+      </a>
+    </section>
+
+    <div class="marquee" aria-hidden="true">
+      <div class="marquee__track" id="marqueeTrack">
+        <span>ذكاء اصطناعي</span><span>•</span><span>تطوير ويب</span><span>•</span><span>هوية بصرية</span><span>•</span><span>تطبيقات جوال</span><span>•</span><span>إنتاج مرئي</span><span>•</span><span>تحليل بيانات</span><span>•</span>
+      </div>
+    </div>
+
+    <section class="block vision" id="vision">
+      <div class="container vision__layout">
+        <div class="vision__visual reveal">
+          <img src="assets/images/ceo-character.png" alt="شخصية Genix ID" loading="lazy">
+          <div class="vision__badge">
+            <span data-i18n="vision_badge_1">رؤية 2030</span>
+            <strong data-i18n="vision_badge_2">ابتكار بلا حدود</strong>
+          </div>
+        </div>
+        <div class="vision__copy reveal">
+          <p class="label" data-i18n="vision_label">من نحن</p>
+          <h2 data-i18n="vision_title">نحوّل الأفكار إلى<br>تجارب رقمية استثنائية</h2>
+          <p data-i18n="vision_desc">نمزج الذكاء الاصطناعي مع التصميم الجريء لنبني علامات ومنتجات تتصدر السوق. كل مشروع يُنفَّذ بمعايير عالمية وسرعة تنفيذ لا تُضاهى.</p>
+          <ul class="vision__list">
+            <li data-i18n="vision_li_1">استراتيجية محتوى مدعومة بالبيانات</li>
+            <li data-i18n="vision_li_2">تصميم وتطوير تحت سقف واحد</li>
+            <li data-i18n="vision_li_3">دعم مستمر بعد الإطلاق</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <section class="block services" id="solutions">
+      <div class="container">
+        <header class="block__head reveal">
+          <p class="label" data-i18n="services_label">خدماتنا</p>
+          <h2><span data-i18n="services_title_1">حلول تقنية</span><br><span class="gradient-text" data-i18n="services_title_2">بمستوى عالمي</span></h2>
+        </header>
+        <div class="bento" id="solutionsGrid"></div>
+      </div>
+    </section>
+
+    <section class="block reel" id="showreel">
+      <div class="container">
+        <header class="block__head reveal">
+          <p class="label" data-i18n="reel_label">الإنتاج المرئي</p>
+          <h2><span data-i18n="reel_title_1">فيديوهات تروي</span><br><span data-i18n="reel_title_2">قصة علامتك</span></h2>
+        </header>
+        <div class="promo-ad reveal">
+          <p class="promo-ad__tag" data-i18n="reel_tag">الإعلان الرسمي</p>
+          <video class="promo-ad__player" controls playsinline poster="assets/images/hero-banner.jpeg" id="lazyPromoVideo">
+            <source data-src="promo/genix-id-ad.mp4" type="video/mp4">
+          </video>
+        </div>
+        <div class="reel__scroll" id="showreelGrid"></div>
+      </div>
+    </section>
+
+    <section class="block works" id="portfolio">
+      <div class="container">
+        <header class="block__head reveal">
+          <p class="label" data-i18n="portfolio_label">معرض الأعمال</p>
+          <h2><span data-i18n="portfolio_title_1">أعمال مختارة</span><br><span class="gradient-text" data-i18n="portfolio_title_2">بلمسة Genix</span></h2>
+        </header>
+        <div class="works__filters" id="portfolioTabs" role="tablist"></div>
+        <div class="works__stage" id="portfolioPanel" role="tabpanel"></div>
+      </div>
+    </section>
+
+    <section class="block perks" id="why">
+      <div class="container">
+        <div class="perks__grid">
+          <article class="perk reveal">
+            <span class="perk__n">01</span>
+            <h3 data-i18n="perk1_title">بنية سحابية مرنة</h3>
+            <p data-i18n="perk1_desc">أنظمة قابلة للتوسع مع مراقبة وأداء عالي على مدار الساعة.</p>
+          </article>
+          <article class="perk reveal">
+            <span class="perk__n">02</span>
+            <h3 data-i18n="perk2_title">أمان على مستوى المؤسسات</h3>
+            <p data-i18n="perk2_desc">تشفير متقدم وسياسات حماية صارمة لبياناتك وعملائك.</p>
+          </article>
+          <article class="perk reveal">
+            <span class="perk__n">03</span>
+            <h3 data-i18n="perk3_title">شراكة حقيقية</h3>
+            <p data-i18n="perk3_desc">فريق يعمل معك خطوة بخطوة من الفكرة حتى الإطلاق والنمو.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="block contact" id="contact">
+      <div class="container contact__layout">
+        <div class="contact__side reveal">
+          <p class="label" data-i18n="contact_label">لنبدأ</p>
+          <h2><span data-i18n="contact_title_1">جاهز لمشروعك</span><br><span data-i18n="contact_title_2">القادم؟</span></h2>
+          <p data-i18n="contact_desc">أرسل تفاصيل مشروعك وسنرد خلال 24 ساعة بخطة واضحة.</p>
+          <div class="contact__actions">
+            <a href="https://wa.me/905527223847" class="btn btn--whatsapp" target="_blank" rel="noopener" data-i18n="btn_wa">واتساب مباشر</a>
+            <a href="https://instagram.com/genix.identity" class="btn btn--instagram" target="_blank" rel="noopener">إنستغرام مباشر</a>
+          </div>
+        </div>
+        <form class="contact__form reveal" id="projectForm" novalidate>
+          <div class="row">
+            <div class="fld">
+              <label for="fullName" data-i18n="form_name">الاسم / الجهة</label>
+              <input type="text" id="fullName" required minlength="2" autocomplete="name">
+              <em class="fld__err" data-for="fullName"></em>
+            </div>
+            <div class="fld">
+              <label for="service" data-i18n="form_service">الخدمة</label>
+              <select id="service" required><option value="" data-i18n="form_select">اختر</option></select>
+              <em class="fld__err" data-for="service"></em>
+            </div>
+          </div>
+          <div class="row">
+            <div class="fld">
+              <label for="phone" data-i18n="form_phone">الجوال</label>
+              <input type="tel" id="phone" required pattern="[0-9+\s\-]{8,18}" autocomplete="tel">
+              <em class="fld__err" data-for="phone"></em>
+            </div>
+            <div class="fld">
+              <label for="email" data-i18n="form_email">البريد</label>
+              <input type="email" id="email" required autocomplete="email">
+              <em class="fld__err" data-for="email"></em>
+            </div>
+          </div>
+          <div class="fld">
+            <label for="overview" data-i18n="form_desc">وصف المشروع</label>
+            <textarea id="overview" rows="4" required minlength="20"></textarea>
+            <em class="fld__err" data-for="overview"></em>
+          </div>
+          <button type="submit" class="btn btn--glow btn--block" data-i18n="form_submit">إرسال الطلب</button>
+        </form>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-foot">
+    <div class="container site-foot__inner">
+      <img src="assets/brand/logo.jpg" alt="Genix ID" class="site-foot__logo" width="40" height="40">
+      <p data-i18n="footer_copy">Genix ID ©️ 2026 — تقنيات المستقبل نلهم بها الواقع</p>
+    </div>
+  </footer>
+
+  <div class="fab-container">
+    <a href="https://wa.me/905527223847" class="fab-btn fab-btn--wa" target="_blank" rel="noopener" aria-label="واتساب">
+      <svg viewBox="0 0 24 24" width="26" height="26" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.435 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413z"/></svg>
+    </a>
+    <a href="https://instagram.com/genix.identity" class="fab-btn fab-btn--ig" target="_blank" rel="noopener" aria-label="إنستغرام">
+      <svg viewBox="0 0 24 24" width="24" height="24" fill="currentColor"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.051.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 1 0 0 12.324 6.162 6.162 0 0 0 0-12.324zM12 16a4 4 0 1 1 0-8 4 4 0 0 1 0 8zm6.406-11.845a1.44 1.44 0 1 0 0 2.881 1.44 1.44 0 0 0 0-2.881z"/></svg>
+    </a>
+  </div>
+
+  <dialog class="lb" id="lightbox">
+    <button type="button" class="lb__x" id="lightboxClose" aria-label="إغلاق">×</button>
+    <button type="button" class="lb__arrow lb__arrow--r" id="lightboxPrev" aria-label="السابق">‹</button>
+    <img id="lightboxImg" src="" alt="">
+    <button type="button" class="lb__arrow lb__arrow--l" id="lightboxNext" aria-label="التالي">›</button>
+  </dialog>
+
+  <dialog class="modal-ok" id="successModal">
+    <div class="modal-ok__card">
+      <div class="modal-ok__icon">✓</div>
+      <h2 data-i18n="modal_success_title">تم الإرسال بنجاح</h2>
+      <p data-i18n="modal_success_desc">سيتواصل معك فريق Genix ID قريباً.</p>
+      <button type="button" class="btn btn--glow" id="successClose" data-i18n="modal_success_btn">حسناً</button>
+    </div>
+  </dialog>
+
+  <script src="js/data.js"></script>
+  <script src="js/main.js"></script>
+  
+  <script>
+    // 1. Diller Sözlüğü
+    const translations = {
+      ar: {
+        nav_vision: "الرؤية", nav_services: "الخدمات", nav_media: "المرئي", nav_portfolio: "الأعمال", nav_contact: "تواصل",
+        btn_start: "ابدأ مشروعك", hero_chip: "Genix ID · هوية رقمية رسمية", hero_title_1: "نصنع المستقبل", hero_title_2: "بالذكاء الاصطناعي",
+        hero_desc: "استوديو رقمي متكامل — من الهوية والويب إلى الفيديو والذكاء الاصطناعي. تجربة فاخرة، تنفيذ سريع، نتائج قابلة للقياس.",
+        btn_works: "استكشف الأعمال", btn_quote: "طلب عرض سعر", metric_projects: "مشروع", metric_services: "خدمات", metric_support: "دعم",
+        vision_badge_1: "رؤية 2030", vision_badge_2: "ابتكار بلا حدود", vision_label: "من نحن", vision_title: "نحوّل الأفكار إلى<br>تجارب رقمية استثنائية",
+        vision_desc: "نمزج الذكاء الاصطناعي مع التصميم الجريء لنبني علامات ومنتجات تتصدر السوق. كل مشروع يُنفَّذ بمعايير عالمية وسرعة تنفيذ لا تُضاهى.",
+        vision_li_1: "استراتيجية محتوى مدعومة بالبيانات", vision_li_2: "تصميم وتطوير تحت سقف واحد", vision_li_3: "دعم مستمر بعد الإطلاق",
+        services_label: "خدماتنا", services_title_1: "حلول تقنية", services_title_2: "بمستوى عالمي", reel_label: "الإنتاج المرئي",
+        reel_title_1: "فيديوهات تروي", reel_title_2: "قصة علامتك", reel_tag: "الإعلان الرسمي", portfolio_label: "معرض الأعمال",
+        portfolio_title_1: "أعمال مختارة", portfolio_title_2: "بلمسة Genix", perk1_title: "بنية سحابية مرنة",
+        perk1_desc: "أنظمة قابلة للتوسع مع مراقبة وأداء عالي على مدار الساعة.", perk2_title: "أمان على مستوى المؤسسات",
+        perk2_desc: "تشفير متقدم وسياسات حماية صارمة لبياناتك وعملائك.", perk3_title: "شراكة حقيقية",
+        perk3_desc: "فريق يعمل معك خطوة بخطوة من الفكرة حتى الإطلاق والنمو.", contact_label: "لنبدأ", contact_title_1: "جاهز لمشروعك",
+        contact_title_2: "القادم؟", contact_desc: "أرسل تفاصيل مشروعك وسنرد خلال 24 ساعة بخطة واضحة.", btn_wa: "واتساب مباشر",
+        form_name: "الاسم / الجهة", form_service: "الخدمة", form_select: "اختر", form_phone: "الجوال", form_email: "البريد",
+        form_desc: "وصف المشروع", form_submit: "إرسال الطلب", footer_copy: "Genix ID ©️ 2026 — تقنيات المستقبل نلهم بها الواقع",
+        modal_success_title: "تم الإرسال بنجاح", modal_success_desc: "سيتواصل معك فريق Genix ID قريباً.", modal_success_btn: "حسناً",
+        marquee: ["ذكاء اصطناعي", "تطوير ويب", "هوية بصرية", "تطبيقات جوال", "إنتاج مرئي", "تحليل بيانات"]
+      },
+      en: {
+        nav_vision: "Vision", nav_services: "Services", nav_media: "Media", nav_portfolio: "Portfolio", nav_contact: "Contact",
+        btn_start: "Start Your Project", hero_chip: "Genix ID · Official Digital Identity", hero_title_1: "We Shape the Future", hero_title_2: "With AI Technologies",
+        hero_desc: "An integrated digital studio — from branding and web development to video production and AI. Premium experience, rapid delivery, measurable results.",
+        btn_works: "Explore Works", btn_quote: "Request a Quote", metric_projects: "Projects", metric_services: "Services", metric_support: "Support",
+        vision_badge_1: "Vision 2030", vision_badge_2: "Limitless Innovation", vision_label: "Who We Are", vision_title: "Transforming Ideas Into<br>Exceptional Digital Experiences",
+        vision_desc: "We blend AI with bold design to build market-leading brands and products. Every project is executed to global standards with unmatched speed.",
+        vision_li_1: "Data-driven content strategy", vision_li_2: "Design & development under one roof", vision_li_3: "Continuous support after launch",
+        services_label: "Our Services", services_title_1: "Tech Solutions", services_title_2: "At a Global Level", reel_label: "Visual Production",
+        reel_title_1: "Videos That Tell", reel_title_2: "Your Brand's Story", reel_tag: "Official Commercial", portfolio_label: "Our Portfolio",
+        portfolio_title_1: "Selected Works", portfolio_title_2: "With Genix Touch", perk1_title: "Flexible Cloud Infrastructure",
+        perk1_desc: "Scalable systems with 24/7 monitoring and high performance.", perk2_title: "Enterprise-grade Security",
+        perk2_desc: "Advanced encryption and strict protection policies for your data.", perk3_title: "True Partnership",
+        perk3_desc: "A team working with you step-by-step from idea to launch and growth.", contact_label: "Let's Start", contact_title_1: "Ready For Your",
+        contact_title_2: "Next Project?", contact_desc: "Send your project details and we will reply within 24 hours with a clear plan.", btn_wa: "Direct WhatsApp",
+        form_name: "Name / Company", form_service: "Service", form_select: "Select", form_phone: "Phone", form_email: "Email",
+        form_desc: "Project Description", form_submit: "Submit Request", footer_copy: "Genix ID ©️ 2026 — Inspiring reality with future tech",
+        modal_success_title: "Submitted Successfully", modal_success_desc: "Genix ID team will contact you shortly.", modal_success_btn: "OK",
+        marquee: ["Artificial Intelligence", "Web Development", "Visual Identity", "Mobile Apps", "Visual Production", "Data Analysis"]
+      },
+      tr: {
+        nav_vision: "Vizyon", nav_services: "Hizmetler", nav_media: "Medya", nav_portfolio: "Projeler", nav_contact: "İletişim",
+        btn_start: "Projeyi Başlat", hero_chip: "Genix ID · Resmi Dijital Kimlik", hero_title_1: "Geleceği Şekillendiriyoruz", hero_title_2: "Yapay Zeka İle",
+        hero_desc: "Bütünsel bir dijital stüdyo — kurumsal kimlik ve web tasarımdan, video üretimi ve yapay zekaya. Lüks deneyim, hızlı teslimat, ölçülebilir sonuçlar.",
+        btn_works: "Projeleri Keşfet", btn_quote: "Teklif Al", metric_projects: "Proje", metric_services: "Hizmet", metric_support: "Destek",
+        vision_badge_1: "Vizyon 2030", vision_badge_2: "Sınırsız İnovasyon", vision_label: "Biz Kimiz", vision_title: "Fikirleri Sıra Dışı<br>Dijital Deneyimlere Dönüştürüyoruz",
+        vision_desc: "Pazara liderlik eden markalar ve ürünler inşa etmek için yapay zekayı cesur tasarımla harmanlıyoruz. Her proje küresel standartlarda ve eşsiz bir hızla sunulur.",
+        vision_li_1: "Veri destekli içerik stratejisi", vision_li_2: "Tek çatı altında tasarım ve geliştirme", vision_li_3: "Lansman sonrası kesintisiz destek",
+        services_label: "Hizmetlerimiz", services_title_1: "Teknolojik Çözümler", services_title_2: "Dünya Standartlarında", reel_label: "Görsel Üretim",
+        reel_title_1: "Markanızın Hikayesini", reel_title_2: "Anlatan Videolar", reel_tag: "Resmi Tanıtım", portfolio_label: "Portfolyo",
+        portfolio_title_1: "Seçilmiş İşler", portfolio_title_2: "Genix Dokunuşuyla", perk1_title: "Esnek Bulut Altyapısı",
+        perk1_desc: "7/24 izleme ve yüksek performans ile ölçeklenebilir sistemler.", perk2_title: "Kurumsal Düzeyde Güvenlik",
+        perk2_desc: "Verileriniz ve müşterileriniz için gelişmiş şifreleme ve katı koruma politikaları.", perk3_title: "Gerçek Ortaklık",
+        perk3_desc: "Fikirden lansmana ve büyümeye kadar sizinle adım adım çalışan bir ekip.", contact_label: "Başlayalım", contact_title_1: "Gelecek Projeniz",
+        contact_title_2: "İçin Hazır mısınız?", contact_desc: "Proje detaylarınızı gönderin, 24 saat içinde net bir planla dönüş yapalım.", btn_wa: "Doğrudan WhatsApp",
+        form_name: "İsim / Kurum", form_service: "Hizmet", form_select: "Seçiniz", form_phone: "Telefon", form_email: "E-posta",
+        form_desc: "Proje Açıklaması", form_submit: "Talebi Gönder", footer_copy: "Genix ID ©️ 2026 — Geleceğin teknolojileriyle gerçeğe ilham veriyoruz",
+        modal_success_title: "Başarıyla Gönderildi", modal_success_desc: "Genix ID ekibi sizinle yakında iletişime geçecektir.", modal_success_btn: "Tamam",
+        marquee: ["Yapay Zeka", "Web Geliştirme", "Görsel Kimlik", "Mobil Uygulamalar", "Video Üretimi", "Veri Analizi"]
+      }
+    };
+
+    // 2. Çeviri Fonksiyonu
+    function updateLanguage(lang) {
+      const htmlPage = document.getElementById('htmlPage');
+      htmlPage.setAttribute('lang', lang);
+      htmlPage.setAttribute('dir', lang === 'ar' ? 'rtl' : 'ltr');
+
+      document.querySelectorAll('[data-i18n]').forEach(element => {
+        const key = element.getAttribute('data-i18n');
+        if (translations[lang] && translations[lang][key]) {
+          if (element.tagName === 'OPTION') {
+            element.textContent = translations[lang][key];
+          } else {
+            element.innerHTML = translations[lang][key];
+          }
+        }
+      });
+
+      const marqueeTrack = document.getElementById('marqueeTrack');
+      if (marqueeTrack && translations[lang] && translations[lang].marquee) {
+        let marqueeContent = "";
+        for(let i = 0; i < 2; i++) {
+          translations[lang].marquee.forEach(word => {
+            marqueeContent += `<span>${word}</span><span>•</span>`;
+          });
+        }
+        marqueeTrack.innerHTML = marqueeContent;
+      }
+    }
+
+    // 3. Dil Değiştirme Dinleyicisi
+    const langSelect = document.getElementById('langSelect');
+    if(langSelect) {
+      langSelect.addEventListener('change', (e) => updateLanguage(e.target.value));
+    }
+
+    // 4. HIZLANDIRMA SİHİRLİSİ (Lazy Load Videos)
+    // Sayfa tamamen hazır olana kadar videoların indirilmesini durdurur, açılışı uçurur.
+    window.addEventListener('DOMContentLoaded', () => {
+      updateLanguage('ar'); // İlk açılış dili
+
+      const lazyVideos = [document.getElementById('lazyHeroVideo'), document.getElementById('lazyPromoVideo')];
+      lazyVideos.forEach(video => {
+        if (video) {
+          const source = video.querySelector('source');
+          if (source && source.getAttribute('data-src')) {
+            source.setAttribute('src', source.getAttribute('data-src'));
+            video.load();
+          }
+        }
+      });
+    });
+  </script>
+</body>
+</html>
