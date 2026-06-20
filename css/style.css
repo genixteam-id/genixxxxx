@@ -939,3 +939,8 @@ body::after {
   .row { grid-template-columns: 1fr; }
   .hero__metrics { gap: 1.5rem; }
 }
+/* إخفاء أي خلفية كانت مرتبطة بقسم الفيديو المحذوف */
+.promo-ad, .promo-ad-player, .hero-section {
+    background-image: none !important;
+    background: transparent !important;
+}
